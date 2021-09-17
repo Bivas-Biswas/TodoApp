@@ -8,7 +8,16 @@ const EditTodo = ({ todo }) => {
         e.preventDefault()
         try {
             const body = { description }
-            await fetch(`http://localhost:5000/todos/${todo.todo_id}`, {
+            /**
+             * proxy is only use in development so it will be ignored in producton
+             * so if there is no http://localhost:5000 then by default it is going to use heroku domain
+             * remember this heroku app is just our server serving the build static content and also
+             * holding the restful api
+             * 
+             * https://pern-todo-app.herokuapp.com/todos
+             */
+
+            await fetch(`/todos/${todo.todo_id}`, {
                 method: 'PUT',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)
