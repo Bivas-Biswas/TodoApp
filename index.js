@@ -77,6 +77,12 @@ app.delete('/todos/:id', async (req, res)=>{
         console.error(err.message)
     }
 })
+
+// catch all method
+app.get("*", (req, res) =>{
+    res.sendFile(path.join(__dirname, "client/build/index.html"))
+})
+
 app.listen(PORT, ()=>{
     console.log(`server has started on port ${PORT}`)
 })
